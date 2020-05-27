@@ -1,90 +1,28 @@
-#This is basic project written in python in oops concept
+#this is basic program to study table of different number by Aditya Yadav
 
-class Library():
-    def __init__(self,list_of_books,Library_name):
-        # creating a dictionary of all books keys
-        self.lend_data = {}
-        self.list_of_books = list_of_books
-        self.library_name = Library_name
+import random
 
-        # adding books to dictionary
-        for books in self.list_of_books:
-            # none means No author have lend this book
-            self.lend_data[books] = None
+numbers = list(range(12,20))
+no_of_time_asking = 14 
+current_number_table = random.choice(numbers)
 
-    def display_books(self):
-        for index,books in enumerate(self.list_of_books):
-            print(f"{index}){books}")
+while no_of_time_asking > 0:
+    if numbers == []:
+        break
+    current_number = random.choice(numbers)
+    current_number_index = numbers.index(current_number)
+    numbers_0_9 = list(range(1,11))
+    no_of_time_asking_2 = 10
 
-    def lend_book(self,book,author):
-        if book in self.list_of_books:
-            if self.lend_data[book] is None:
-                self.lend_data[book] = author
-            else:
-                print(f"Sorry This book is lend by {self.lend_data[book]}")
+    while no_of_time_asking_2 > 0:
+        current_number_2 = random.choice(numbers_0_9)
+        current_number_2_index = numbers_0_9.index(current_number_2)
+        answer_ = input(f"{current_number}*{current_number_2}: ")
+        if current_number * current_number_2 == int(answer_):
+            print(f"😀,Your Answer is Correct {answer_}")
         else:
-            print("You have written wrong book name")
-
-    def return_book(self,book,author):
-        if book in self.list_of_books:
-            if self.lend_data[book] is not None:
-                self.lend_data.pop(book)
-            else:
-                print("Sorry but This book is not Lend")
-        else:
-            print("You have written wrong book name")
-
-    def add_book(self,book_name):
-        self.list_of_books.append(book_name)
-        self.lend_data[book_name] = None
-
-    def delete_book(self,book_name):
-        self.list_of_books.remove(book_name)
-        self.lend_data.pop(book_name)
-
-def main():
-    # By deafault variables
-    list_books = ['Compiler Design','Computer Network','DAP','Software Engineer','HRM']
-    Library_name = 'CSE Branch'
-    secret_key = 123456
-
-    Satya = Library(list_books,Library_name)
-
-    print(f"Welecome To {Satya.library_name} library\n\nq for exit \nDisplay Book Using 'd' and add lend book using 'l' and Return a Book using 'r' \nAdd Book Using 'a' and Delete Book using 'del' \n ")
-
-    Exit = False
-    while (Exit is not True):
-        _input = input("option:")
-        print("\n")
-        
-        if _input == "q":
-            Exit = True
-
-        elif _input == "d":
-            Satya.display_books()
-
-        elif _input == "l":
-            _input2 = input("What is your name:")
-            _input3 = input("Which Book Do you want to lend:")
-            print("\n Book Lend \n")
-            Satya.lend_book(_input3,_input2)
-
-        elif _input == "a":
-            _input2 = input("Book name:")
-            Satya.add_book(_input2)
-
-        elif _input == "del":
-            _input_secret = int(input("Write the secret key to delete:"))
-            if (_input_secret == secret_key):
-                _input2 = input("Book Which you want to delete:")
-                Satya.delete_book(_input2)
-            else:
-                print("Sorry We can't Delete the Book")
-
-        elif _input == "r":
-            _input2 = input("What is your name:")
-            _input3 = input("Which Book Do you want to return:")
-            Satya.return_book(_input3,_input2)
-
-if __name__ == "__main__":
-    main()
+            print(f"😪,Your Answer is wrong,Actual Answer is  {current_number*current_number_2}")
+        numbers_0_9.pop(current_number_2_index)
+        no_of_time_asking_2 = no_of_time_asking_2 - 1
+    numbers.pop(current_number_index)
+    no_of_time_asking = no_of_time_asking - 1
